@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -5,10 +6,8 @@ using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Text;
 using CsvHelper;
-using FirstThingsLib;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
 namespace FirstThingsLib.Tests
 {
@@ -38,8 +37,22 @@ namespace FirstThingsLib.Tests
         private IEnumerable<Task> CreateTestTasks()
             => new List<Task>
             {
-                new Task { Title = "Task 1" },
-                new Task { Title = "Task 2" },
+                new Task 
+                { 
+                    Title = "Task 1", 
+                    ListName = "Personal",
+                    Order = -7493990364060050000,
+                    StartDate = new DateTime(2020, 1, 1),
+                    Status = 0, 
+                },
+                new Task 
+                { 
+                    Title = "Task 2", 
+                    ListName = "Personal", 
+                    Order = -1152922397960040000,
+                    StartDate = new DateTime(2020, 2, 2),
+                    Status = 1,
+                },
             };
 
         private static MockFileSystem CreateMockFileSystem(string FILE_PATH, IEnumerable<Task> testTasks)
