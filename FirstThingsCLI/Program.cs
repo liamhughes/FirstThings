@@ -22,7 +22,7 @@ namespace FirstThingsCLI
 
             foreach(var task in tasksToOutput.OrderBy(t => t.Order))
             {
-                Console.WriteLine($"{task.Title}");
+                Console.WriteLine($"{task.Title} - {task.Duration?.TotalMinutes.ToString() ?? "??"} minutes");
             }
         }
     }

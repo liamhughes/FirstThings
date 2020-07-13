@@ -43,7 +43,8 @@ namespace FirstThingsLib.Tests
                     ListName = "Personal",
                     Order = -7493990364060050000,
                     StartDate = new DateTime(2020, 1, 1),
-                    Status = 0, 
+                    Status = 0,
+                    Tags = new List<string>{ "30_minutes", "health" }
                 },
                 new Task 
                 { 
@@ -52,6 +53,7 @@ namespace FirstThingsLib.Tests
                     Order = -1152922397960040000,
                     StartDate = new DateTime(2020, 2, 2),
                     Status = 1,
+                    Tags = new List<string>{ "5_minutes", "growth" }
                 },
             };
 
