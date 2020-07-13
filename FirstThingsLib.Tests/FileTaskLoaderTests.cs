@@ -15,6 +15,12 @@ namespace FirstThingsLib.Tests
     public class FileTaskLoaderTests
     {
         [TestMethod]
+        public void FileTaskLoaderCanBeConstructed()
+        {
+            var loader = new FirstThingsLib.FileTaskLoader(new MockFileSystem(), "");
+        }
+
+        [TestMethod]
         public void TasksCanBeLoaded()
         {
             const string FILE_PATH = @"tasks.csv";
