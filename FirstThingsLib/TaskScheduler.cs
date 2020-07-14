@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FirstThingsLib
 {
@@ -9,9 +10,9 @@ namespace FirstThingsLib
         {
         }
 
-        public object ScheduleTasks(List<Task> tasks, ScheduleOptions scheduleOptions)
+        public List<Task> ScheduleTasks(List<Task> tasks, ScheduleOptions scheduleOptions)
         {
-            return tasks;
+            return tasks.OrderBy(t => t.Order).ToList();
         }
     }
 }
