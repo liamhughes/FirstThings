@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -44,13 +45,13 @@ namespace FirstThingsLib.Tests
         }
 
         [TestMethod]
-        public void TaskSchedulerFiltersOutCompletedTasks()
+        public void TaskSchedulerOnlyReturnsTasksThatHaveNotBeenCompletedOrArchived()
         {
             var scheduler = new FirstThingsLib.TaskScheduler();
 
             var task1 = new FirstThingsLib.Task { Order = -30, Status = (int)TaskStatus.Normal };
             var task2 = new FirstThingsLib.Task { Order = -20, Status = (int)TaskStatus.Completed };
-            var task3 = new FirstThingsLib.Task { Order = -10, Status = (int)TaskStatus.Normal };
+            var task3 = new FirstThingsLib.Task { Order = -10, Status = (int)TaskStatus.Archived };
 
             var tasks = new List<FirstThingsLib.Task>{ task1, task2, task3 };
 
@@ -58,7 +59,51 @@ namespace FirstThingsLib.Tests
 
             var scheduledTasks = scheduler.ScheduleTasks(tasks, scheduleOptions);
 
-            scheduledTasks.Should().BeEquivalentTo(new List<FirstThingsLib.Task> { task1, task3 });
+            scheduledTasks.Should().BeEquivalentTo(new List<FirstThingsLib.Task> { task1 });
+        }
+
+        [TestMethod]
+        public void TaskSchedulerReturnsTasksBasedOnDueDate()
+        {
+            var now = DateTime.UtcNow;
+
+            var scheduler = new FirstThingsLib.TaskScheduler();
+
+            var task1 = new FirstThingsLib.Task { Order = -30, Status = (int)TaskStatus.Normal, StartDate = now };
+            var task2 = new FirstThingsLib.Task { Order = -20, Status = (int)TaskStatus.Normal, StartDate = now.AddMilliseconds(-1) };
+            var task3 = new FirstThingsLib.Task { Order = -10, Status = (int)TaskStatus.Normal, StartDate = now.AddMilliseconds(1) };
+
+            var tasks = new List<FirstThingsLib.Task>{ task1, task2, task3 };
+
+            var scheduleOptions = new FirstThingsLib.ScheduleOptions
+            {
+                StartDate = now
+            };
+
+            var scheduledTasks = scheduler.ScheduleTasks(tasks, scheduleOptions);
+
+            scheduledTasks.Should().BeEquivalentTo(new List<FirstThingsLib.Task> { task1, task2 });
+        }
+
+        public void TaskSchedulerReturnsTasksWithoutADueDate()
+        {
+            var now = DateTime.UtcNow;
+
+            var scheduler = new FirstThingsLib.TaskScheduler();
+
+            var task1 = new FirstThingsLib.Task { Order = -30, Status = (int)TaskStatus.Normal };
+            var task2 = new FirstThingsLib.Task { Order = -20, Status = (int)TaskStatus.Normal, StartDate = null };
+
+            var tasks = new List<FirstThingsLib.Task>{ task1, task2 };
+
+            var scheduleOptions = new FirstThingsLib.ScheduleOptions
+            {
+                StartDate = now
+            };
+
+            var scheduledTasks = scheduler.ScheduleTasks(tasks, scheduleOptions);
+
+            scheduledTasks.Should().BeEquivalentTo(new List<FirstThingsLib.Task> { task1, task2 });
         }
     }
 }

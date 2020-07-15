@@ -1,3 +1,5 @@
+using System;
+
 namespace FirstThingsLib
 {
     public class ScheduleOptions
@@ -5,5 +7,7 @@ namespace FirstThingsLib
         public ScheduleOptions()
         {
         }
+
+        public DateTime StartDate { get; set; }
     }
 }

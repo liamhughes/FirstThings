@@ -14,6 +14,7 @@ namespace FirstThingsLib
         {
             return tasks
                 .Where(t => t.Status == (int)TaskStatus.Normal)
+                .Where(t => t.StartDate == null || t.StartDate <= scheduleOptions.StartDate)
                 .OrderBy(t => t.Order).ToList();
         }
     }
