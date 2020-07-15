@@ -12,7 +12,9 @@ namespace FirstThingsLib
 
         public List<Task> ScheduleTasks(List<Task> tasks, ScheduleOptions scheduleOptions)
         {
-            return tasks.OrderBy(t => t.Order).ToList();
+            return tasks
+                .Where(t => t.Status == (int)TaskStatus.Normal)
+                .OrderBy(t => t.Order).ToList();
         }
     }
 }

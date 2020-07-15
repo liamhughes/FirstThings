@@ -1,11 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.IO.Abstractions.TestingHelpers;
-using System.Linq;
-using System.Text;
-using CsvHelper;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

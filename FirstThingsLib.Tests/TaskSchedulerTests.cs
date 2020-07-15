@@ -1,11 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.IO.Abstractions.TestingHelpers;
-using System.Linq;
-using System.Text;
-using CsvHelper;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -48,6 +41,24 @@ namespace FirstThingsLib.Tests
             var scheduledTasks = scheduler.ScheduleTasks(tasks, scheduleOptions);
 
             scheduledTasks.Should().BeInAscendingOrder(t => t.Order);
+        }
+
+        [TestMethod]
+        public void TaskSchedulerFiltersOutCompletedTasks()
+        {
+            var scheduler = new FirstThingsLib.TaskScheduler();
+
+            var task1 = new FirstThingsLib.Task { Order = -30, Status = (int)TaskStatus.Normal };
+            var task2 = new FirstThingsLib.Task { Order = -20, Status = (int)TaskStatus.Completed };
+            var task3 = new FirstThingsLib.Task { Order = -10, Status = (int)TaskStatus.Normal };
+
+            var tasks = new List<FirstThingsLib.Task>{ task1, task2, task3 };
+
+            var scheduleOptions = new FirstThingsLib.ScheduleOptions();
+
+            var scheduledTasks = scheduler.ScheduleTasks(tasks, scheduleOptions);
+
+            scheduledTasks.Should().BeEquivalentTo(new List<FirstThingsLib.Task> { task1, task3 });
         }
     }
 }
