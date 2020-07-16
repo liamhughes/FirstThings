@@ -17,16 +17,18 @@ namespace FirstThingsCLI
 
             var taskScheduler = new FirstThingsLib.TaskScheduler();
 
-            var scheduledTasks = taskScheduler.ScheduleTasks(tasks.ToList(), new FirstThingsLib.ScheduleOptions());
+            var scheduledTasks = taskScheduler.ScheduleTasks(
+                tasks.ToList(), 
+                new FirstThingsLib.ScheduleOptions
+                { 
+                    List = "Work",
+                    StartDate = DateTime.Now 
+                }
+            );
 
-            var tasksToOutput = scheduledTasks
-                                    .Where(t => t.ListName == "Personal - New")
-                                    .Where(t => t.Status == 0)
-                                    .Where(t => t.StartDate <= DateTime.Now);
-
-            foreach(var task in tasksToOutput)
+            foreach(var task in scheduledTasks)
             {
-                Console.WriteLine($"{task.Title} - {task.Duration?.TotalMinutes.ToString() ?? "??"} minutes");
+                Console.WriteLine($"{task.Title.Trim()} - {task.Duration?.TotalMinutes.ToString() ?? "??"} minutes");
             }
         }
     }
