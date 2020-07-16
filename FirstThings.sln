@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstThingsLib", "FirstThin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstThingsLib.Tests", "FirstThingsLib.Tests\FirstThingsLib.Tests.csproj", "{F7667DAB-D670-4E16-8FCF-A76153A69CE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstThingsCLI", "FirstThingsCLI\FirstThingsCLI.csproj", "{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{F7667DAB-D670-4E16-8FCF-A76153A69CE4}.Release|x64.Build.0 = Release|Any CPU
 		{F7667DAB-D670-4E16-8FCF-A76153A69CE4}.Release|x86.ActiveCfg = Release|Any CPU
 		{F7667DAB-D670-4E16-8FCF-A76153A69CE4}.Release|x86.Build.0 = Release|Any CPU
+		{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}.Debug|x64.Build.0 = Debug|Any CPU
+		{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}.Debug|x86.Build.0 = Debug|Any CPU
+		{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}.Release|x64.ActiveCfg = Release|Any CPU
+		{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}.Release|x64.Build.0 = Release|Any CPU
+		{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}.Release|x86.ActiveCfg = Release|Any CPU
+		{46EBCC4B-2144-419B-AE56-D8D8D42CEE9F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

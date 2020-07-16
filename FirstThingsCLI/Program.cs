@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using ConsoleTables;
 
 namespace FirstThingsCLI
 {
@@ -18,18 +20,25 @@ namespace FirstThingsCLI
             var taskScheduler = new FirstThingsLib.TaskScheduler();
 
             var scheduledTasks = taskScheduler.ScheduleTasks(
-                tasks.ToList(), 
+                tasks.ToList(),
                 new FirstThingsLib.ScheduleOptions
-                { 
+                {
                     List = "Work",
-                    StartDate = DateTime.Now 
+                    StartDate = DateTime.Now
                 }
             );
 
-            foreach(var task in scheduledTasks)
-            {
-                Console.WriteLine($"{task.Title.Trim()} - {task.Duration?.TotalMinutes.ToString() ?? "??"} minutes");
-            }
+            OutputTasks(scheduledTasks.ToList());
+        }
+
+        static void OutputTasks(IList<FirstThingsLib.Task> tasks)
+        {
+            var table = new ConsoleTable(nameof(FirstThingsLib.Task.Title), nameof(FirstThingsLib.Task.Duration));
+
+            foreach(var task in tasks)
+                table.AddRow(task.Title, task.Duration);
+            
+            table.Write();
         }
     }
 }
