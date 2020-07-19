@@ -17,7 +17,7 @@ namespace FirstThingsLib
                 var tag = Tags.SingleOrDefault(t => t.Contains("_minute"));
 
                 if (tag == null)
-                    return null;
+                    return TimeSpan.FromMinutes(30);
 
                 var minuteString = tag.Split(new List<string> { "_minute" }.ToArray(), StringSplitOptions.RemoveEmptyEntries)[0];
 
@@ -35,6 +35,8 @@ namespace FirstThingsLib
 
         [Name("Start Date")]
         public DateTime? StartDate { get; set; }
+
+        public DateTime? ScheduledStartDate { get; set; }
 
         public int Status { get; set; }
 

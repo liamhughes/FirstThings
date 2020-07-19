@@ -23,7 +23,7 @@ namespace FirstThingsCLI
                 tasks.ToList(),
                 new FirstThingsLib.ScheduleOptions
                 {
-                    List = "Work",
+                    List = "Personal",
                     StartDate = DateTime.Now
                 }
             );

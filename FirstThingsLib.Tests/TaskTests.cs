@@ -39,13 +39,13 @@ namespace FirstThingsLib.Tests
         }
 
         [TestMethod]
-        public void ATaskWithoutADurationTagHasANullDuration()
+        public void ATaskWithoutADurationTagHasADefault30MinuteDuration()
         {
             var task = new FirstThingsLib.Task();
 
             task.TagString = "growth";
 
-            task.Duration.Should().Be(null);
+            task.Duration.Should().Be(TimeSpan.FromMinutes(30));
         }
 
         [TestMethod]
