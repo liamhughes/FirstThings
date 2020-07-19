@@ -61,5 +61,32 @@ namespace FirstThingsLib.Tests
 
             action.Should().Throw<InvalidOperationException>();
         }
+
+        [TestMethod]
+        public void SettingDurationOnATaskWithoutADurationUpdatesTags()
+        {
+            var task = new FirstThingsLib.Task();
+
+            task.Duration = TimeSpan.FromMinutes(5);
+
+            task.Duration.Should().Be(TimeSpan.FromMinutes(5));
+            task.Tags.Should().Contain("5_minutes");
+            task.TagString.Should().Be("5_minutes");
+        }
+
+        [TestMethod]
+        public void SettingDurationOnATaskWithADurationUpdatesTags()
+        {
+            var task = new FirstThingsLib.Task
+            {
+                TagString = "growth, 5_minutes"
+            };
+
+            task.Duration = TimeSpan.FromMinutes(10);
+
+            task.Duration.Should().Be(TimeSpan.FromMinutes(10));
+            task.Tags.Should().Contain("10_minutes");
+            task.TagString.Should().Be("growth, 10_minutes");
+        }
     }
 }

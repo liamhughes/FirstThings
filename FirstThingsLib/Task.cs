@@ -23,6 +23,12 @@ namespace FirstThingsLib
 
                 return TimeSpan.FromMinutes(Convert.ToDouble(minuteString));
             }
+            set
+            {
+                Tags.RemoveAll(t => t.Contains("_minute"));
+                if (value.HasValue)
+                    Tags.Add($"{value.Value.TotalMinutes}_minutes");
+            }
         }
 
         public double Order { get; set; }
