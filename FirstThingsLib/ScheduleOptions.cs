@@ -8,7 +8,10 @@ namespace FirstThingsLib
         {
         }
 
-        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+
         public string List { get; set; }
+
+        public DateTime StartDate { get; set; }
     }
 }
