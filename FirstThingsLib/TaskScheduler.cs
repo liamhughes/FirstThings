@@ -15,7 +15,7 @@ namespace FirstThingsLib
             tasks = tasks
                 .Where(t => scheduleOptions.List == null || t.ListName == scheduleOptions.List)
                 .Where(t => t.Status == (int)TaskStatus.Normal)
-                .Where(t => t.StartDate == null || t.StartDate <= scheduleOptions.StartDate)
+                .Where(t => t.StartDate == null || t.StartDate <= scheduleOptions.StartDate.Date.AddDays(1).AddMilliseconds(-1))
                 .OrderBy(t => t.Order).ToList();
 
             var upToDate = scheduleOptions.StartDate;
